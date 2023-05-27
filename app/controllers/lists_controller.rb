@@ -4,9 +4,18 @@ class ListsController < ApplicationController
   end
 
   def create
-    list = List.new(list_params)
-    list.save
-    redirect_to list_path(list.id)
+    # Validation無
+    # list = List.new(list_params)
+    # list.save
+    # redirect_to list_path(list.id)
+
+    #Validation有
+    @list = List.new(list_params)
+    if @list.save
+        redirect_to list_path(@list.id)
+    else
+      render :new
+    end
   end
 
   def index
