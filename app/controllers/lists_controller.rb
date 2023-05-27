@@ -9,7 +9,6 @@ class ListsController < ApplicationController
     redirect_to list_path(list.id)
   end
 
-
   def index
     @lists = List.all
   end
@@ -19,6 +18,13 @@ class ListsController < ApplicationController
   end
 
   def edit
+    @list = List.find(params[:id])
+  end
+  
+  def update
+    list = List.find(params[:id])    #上書きするデータを取得
+    list.update(list_params)         #選択したデータにフォーム情報を引数で渡す。アップデート。
+    redirect_to list_path(list.id)   #リダイレクト
   end
 
   private
