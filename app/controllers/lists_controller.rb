@@ -9,9 +9,9 @@ class ListsController < ApplicationController
     if @list.save
         redirect_to list_path(@list.id)
     else
-      @list = List.all
-      render 'index' #indexはURLで省略されるため。これはアクション名indexではない。
-      # render :new
+      # @list = List.all
+      # render 'index' #indexはURLで省略されるため。これはアクション名indexではない。
+      render :new
     end
   end
 
