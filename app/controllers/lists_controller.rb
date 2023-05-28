@@ -4,17 +4,14 @@ class ListsController < ApplicationController
   end
 
   def create
-    # Validation無
-    # list = List.new(list_params)
-    # list.save
-    # redirect_to list_path(list.id)
-
-    #Validation有
+  #Validation有 list -> @listに変更（エラーが起きた際、listに入ったエラー文をビューに送る必要がある。）
     @list = List.new(list_params)
     if @list.save
         redirect_to list_path(@list.id)
     else
-      render :new
+      @list = List.all
+      render 'index' #indexはURLで省略されるため。これはアクション名indexではない。
+      # render :new
     end
   end
 
