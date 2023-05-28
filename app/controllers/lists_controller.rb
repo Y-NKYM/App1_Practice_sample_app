@@ -7,6 +7,7 @@ class ListsController < ApplicationController
   #Validation有 list -> @listに変更（エラーが起きた際、listに入ったエラー文をビューに送る必要がある。）
     @list = List.new(list_params)
     if @list.save
+        flash[:notice] = "投稿に成功しました"
         redirect_to list_path(@list.id)
     else
       # @list = List.all
